@@ -4,7 +4,7 @@
 	$db_user = $_SERVER['PHP_AUTH_USER'];
 	$db_password = $_SERVER['PHP_AUTH_PW'];
 
-	if (!mysql_connect($db_host, $db_user, $db_password) || !mysql_select_db($db_name)) {
+	if (!@mysql_connect($db_host, $db_user, $db_password) || !@mysql_select_db($db_name)) {
     	Header("WWW-Authenticate: Basic realm=\"$db_name@$db_host\"");
     	Header("HTTP/1.0 401 Unauthorized");
 		fatal_error("<b>CONNECTION ERROR</b> check your server permissions"); 
