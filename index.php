@@ -1,6 +1,6 @@
 <?php
-	$db_name = $_GET['dbn'];
-	$db_host = $_GET['dbh'];
+	$db_name = $_GET['dbn']; unset($_GET['dbn']);
+	$db_host = $_GET['dbh']; unset($_GET['dbh']);
 	$db_user = $_SERVER['PHP_AUTH_USER'];
 	$db_password = $_SERVER['PHP_AUTH_PW'];
 
@@ -9,7 +9,11 @@
     	Header("HTTP/1.0 401 Unauthorized");
 		fatal_error("<b>CONNECTION ERROR</b> check your server permissions"); 
 	}
-	$query = trim(stripslashes($_GET['q']));
+	$sql = trim(stripslashes($_GET['q']));
+	unset($_GET['q']);
+	foreach ($_GET as $key => $val) {
+		$query = str_replace('{'. $key .'}', $val, $sql); 
+	}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
