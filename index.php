@@ -9,10 +9,10 @@
     	Header("HTTP/1.0 401 Unauthorized");
 		fatal_error("<b>CONNECTION ERROR</b> check your server permissions"); 
 	}
-	$sql = trim(stripslashes($_GET['q']));
+	$query = trim(stripslashes($_GET['q']));
 	unset($_GET['q']);
 	foreach ($_GET as $key => $val) {
-		$query = str_replace('{'. $key .'}', $val, $sql); 
+		$query = str_replace('{'. $key .'}', $val, $query); 
 	}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml">
